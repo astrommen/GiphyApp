@@ -49,7 +49,6 @@ $(document).ready(function() {
         // grabbing value from clicked button
         var x = $(this).attr("data-flight").trim(); // .trim removes spaces & such
 
-        // assigning "state" to attr 
         // placing value into queryURL string w/ API key
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             x + "&api_key=vRVtwSi9eBLLOpTHxJRJflgaFDvr7lH2&limit=10";
@@ -96,7 +95,9 @@ $(document).ready(function() {
                 gifDiv.prepend(gif); // prepend the new div to html div
 
             }); // end of each loop
+        
         }); // end of response function
+    
     }); // end of document click event listener
 
     loadBtns(); // initial load of buttons
@@ -113,4 +114,5 @@ $(document).ready(function() {
             $(this).attr("data-state", "still");
         }
     });
+
 }); // end of document ready
