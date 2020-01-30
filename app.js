@@ -1,7 +1,7 @@
 $(document).ready(function() {
     
     //var holding an array topic strings (1)
-    var topics = ["bombers", "fighters", "dirigibles", "barnstormers"]; console.log(topics);
+    var topics = ["bomber", "fighter", "dirigibles", "barnstormers"]; console.log(topics);
 
     // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     // topics + "&api_key=vRVtwSi9eBLLOpTHxJRJflgaFDvr7lH2&limit=10";
@@ -39,22 +39,32 @@ $(document).ready(function() {
             url: queryURL,
             method: "GET",
         }).then(function(response) { // complete response then exec function
-                
+            
+            // storing data from the AJAX request
+            var results = response.data;
+
             //empties the div so the new content doesnt stack
             $("#gifs-appear-here").empty();
         
             // for loop running through data index
-            $.each(response.data, function(index, value){
+            $.each(results, function(index, value){ console.log(results[index]);
 
                 var gifDiv = $("#gifs-appear-here"); // assign var to div for modularity
 
                 var gif = $("<div>"); // assign var to create new divs for gifs
 
                 // assign var to create new p for ratings
-                var p = $("<p>").text("Gif Rating: " + response.data[index].rating);
+                var p = $("<p>").text("Gif Rating: " + results[index].rating);
             
-                gifDiv.append(p); // attach each p to the html div
-                gifDiv.append(gif); // attach new div to the html div
+                var gifImage = $("<img>"); // creating and storing an image tag
+
+                // setting the src attr of image pulled from giphy
+                gifImage.attr("src", results[index].images.fixed_height.url);
+                
+                gif.append(p); // attach each p to new div
+                gif.append(gifImage); // attach image to new div
+
+                gifDiv.prepend(gif); // prepend the new div to html div
 
             }); // end of each loop
         }); // end of response function
