@@ -43,12 +43,12 @@ $(document).ready(function() {
             var results = response.data;
 
             //empties the div so the new content doesnt stack
-            $("#gifs-appear-here").empty();
+            $("#gifs").empty();
         
             // for loop running through data index
             $.each(results, function(index, value){ console.log(results[index]);
 
-                var gifDiv = $("#gifs-appear-here"); // assign var to div for modularity
+                var gifDiv = $("#gifs"); // assign var to div for modularity
 
                 var gif = $("<div>"); // assign var to create new divs for gifs
 
