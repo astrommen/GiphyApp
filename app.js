@@ -1,10 +1,7 @@
 $(document).ready(function() {
     
     //var holding an array topic strings (1)
-    var topics = ["bomber", "fighter", "dirigibles", "barnstormers"]; console.log(topics);
-
-    // var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    // topics + "&api_key=vRVtwSi9eBLLOpTHxJRJflgaFDvr7lH2&limit=10";
+    var topics = ["bomber", "fighter-jet", "dirigible", "aerobatic"];
 
     $.each(topics, function(index, value) {
         
@@ -24,6 +21,7 @@ $(document).ready(function() {
         $("#buttons-view").append(topicBtn);     
 
     });
+
     // code for GIPHY API call
     $(document).on("click", ".flight", function(){
 			
@@ -38,7 +36,8 @@ $(document).ready(function() {
         $.ajax({
             url: queryURL,
             method: "GET",
-        }).then(function(response) { // complete response then exec function
+        })
+        .then(function(response) { // complete response then exec function
             
             // storing data from the AJAX request
             var results = response.data;
