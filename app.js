@@ -2,9 +2,8 @@ $(document).ready(function() {
     
     //var holding an array topic strings (1)
     var topics = ["bomber", "fighter-jet", "dirigible", "aerobatic"];
-
     
-    function loadBtns() {
+    function loadBtns() { // function to dynamically create topic buttons
         
         $("#buttons-view").empty(); // stops buttons from stacking when submitting new
         
@@ -51,7 +50,7 @@ $(document).ready(function() {
 
         // placing value into queryURL string w/ API key
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            x + "&api_key=vRVtwSi9eBLLOpTHxJRJflgaFDvr7lH2&limit=10";
+            x + "&api_key=vRVtwSi9eBLLOpTHxJRJflgaFDvr7lH2&limit=100";
 
         // API call
         $.ajax({
@@ -63,39 +62,64 @@ $(document).ready(function() {
             // storing data from the AJAX request
             var results = response.data;
 
+            var i = 9; //var to hold iterator for .each loop
+
             //empties the div so the new content doesnt stack
             $("#gifs").empty();
-        
-            // for loop running through data index
-            $.each(results, function(index, value){ console.log(results[index]);
 
-                var gifDiv = $("#gifs"); // assign var to div for modularity
+            addGifs();
 
-                var gif = $("<div>"); // assign var to create new divs for gifs
+            function addGifs(){ // function to dynamically create gif divs
+                // for loop running through data index
+                $.each(results, function(index){ console.log(results[index]);
 
-                // assign var to create new p for ratings
-                var p = $("<p>").text("Gif Rating: " + results[index].rating);
-            
-                var gifImage = $("<img>"); // creating and storing an image tag
+                    var gifDiv = $("#gifs"); // assign var to div for modularity
 
-                // setting the src attr of image to stills/animated gif pulled from giphy
-                gifImage.attr("src", results[index].images.fixed_height_still.url);
+                    var gif = $("<div>"); // assign var to create new divs for gifs
 
-                gifImage.attr("data-still", results[index].images.fixed_height_still.url);
-
-                gifImage.attr("data-animate", results[index].images.fixed_height.url);
-
-                gifImage.attr("data-state", "still");
-
-                gifImage.addClass("gif");
+                    // assign var to create new p for ratings
+                    var p = $("<p>").text("#" + index + "Gif Rating: " + results[index].rating);
                 
-                gif.append(p); // attach each p to new div
-                gif.append(gifImage); // attach image to new div
+                    var gifImage = $("<img>"); // creating and storing an image tag
 
-                gifDiv.prepend(gif); // prepend the new div to html div
+                    // setting the src attr of image to stills/animated gif pulled from giphy
+                    gifImage.attr("src", results[index].images.fixed_height_still.url);
 
-            }); // end of each loop
-        
+                    gifImage.attr("data-still", results[index].images.fixed_height_still.url);
+
+                    gifImage.attr("data-animate", results[index].images.fixed_height.url);
+
+                    gifImage.attr("data-state", "still");
+
+                    gifImage.addClass("gif");
+                    // end of setting attrs for "pause gif" method below
+
+                    gif.append(p); // attach each p to new div
+
+                    gif.append(gifImage); // attach image to new div
+
+                    gifDiv.append(gif); // prepend the new div to html div
+                    
+                    return (index < i);
+                    
+                }); // end of each loop
+
+            }//end of function
+
+            //function for more gif button click
+            $(document).on("click", "#moreGif", function(){
+                
+                //adds 10 to the iterator
+                i = i+10; console.log(i);
+
+                //empties the div so the new content doesnt stack
+                $("#gifs").empty();
+
+                //runs the add Gif function from above
+                addGifs();
+
+            }); //end of more gif function
+
         }); // end of response function
     
     }); // end of document click event listener
@@ -106,13 +130,15 @@ $(document).ready(function() {
     $(document).on("click", ".gif", function(){
         var state = $(this).attr("data-state");
 
-        if (state === "still") {
+        if (state === "still") {//if state is still; replace img src with animate src
             $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-        } else {
-            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "animate"); //set state to animate
+        } 
+        else { //vice versa
+            $(this).attr("src", $(this).attr("data-still")); 
             $(this).attr("data-state", "still");
         }
-    });
+        
+    }); //end of code to pause gifs
 
 }); // end of document ready
