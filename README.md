@@ -1,4 +1,4 @@
-# GiphyApp
+* GiphyApp
 
 1. Before you can make any part of your site work, you need to create an array of strings, each one related to a topic that interests you. Save it to a variable called `topics`. (done)
    * I am choosing 'flight' as my topic cuz why not?
@@ -20,15 +20,16 @@
 
 8. Ensure your app is fully mobile responsive. 
 
-9. Allow users to request additional gifs to be added to the page.
+9. Allow users to request additional gifs to be added to the page. (done, dk how)
    * Each request should ADD 10 gifs to the page, NOT overwrite the existing gifs.
 
-   - increase limit number;
+   - increase limit number (done)
    
    - make response into a function;
       - maybe change to a for loop; look for more documentation on .each();
+      * still used .each loop, return false condition to stop iteration
 
-   - have button pull 10 at a time;
+   - have button pull 10 at a time; (button works)
 
 10. List additional metadata (title, tags, etc) for each gif in a clean and readable format.
 
