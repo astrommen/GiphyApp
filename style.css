@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    grid-template-rows: ;
+}
+.flight {
+    background-color: #4284f5;
+    color: white;
+    font: bold;
+    font-size: 24px;
+    margin-right: .5%;
+}
