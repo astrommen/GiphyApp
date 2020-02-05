@@ -78,7 +78,8 @@ $(document).ready(function() {
                     var gif = $("<div>"); // assign var to create new divs for gifs
 
                     // assign var to create new p for ratings
-                    var p = $("<p>").text("#" + index + "Gif Rating: " + results[index].rating);
+                    var p = $("<p>").text("Gif Rating: " + results[index].rating);
+                    var p1 = $("<p>").text("Source: " + results[index].source_tld);
                 
                     var gifImage = $("<img>"); // creating and storing an image tag
 
@@ -94,7 +95,7 @@ $(document).ready(function() {
                     gifImage.addClass("gif");
                     // end of setting attrs for "pause gif" method below
 
-                    gif.append(p); // attach each p to new div
+                    gif.append(p).append(p1); // attach each p to new div
 
                     gif.append(gifImage); // attach image to new div
 
