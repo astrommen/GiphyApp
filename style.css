@@ -1,11 +1,52 @@
 .container {
-    display: flex;
-    grid-template-rows: ;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto;
+
+}
+#gifs{
+    width: 95%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;  
+    justify-content: center;  
+}
+/* @media screen and (max-width: 769px){
+    #gifs{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width: 600px){
+    #gifs{
+        display: grid;
+        grid-template-columns: auto;
+    }
+} */
+h1{
+    font-size: 250%;
+    text-align: center;
+}
+#flight-form{
+    margin:2%;
+    text-align: center;
 }
 .flight {
     background-color: #4284f5;
     color: white;
     font: bold;
-    font-size: 24px;
+    font-size: 14px;
     margin-right: .5%;
+    margin-bottom: 1%
+}
+#buttons-view{
+    padding: 0 5%;
+}
+#moreGif{
+    background-color: lightskyblue;
+    color: darkblue;
+    font-weight: bold;
+    font-size: 14px;
+    width: 90%;
+    justify-content: center;
+    margin-left: 5%; 
 }
